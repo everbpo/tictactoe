@@ -10,11 +10,10 @@ function Square({sqNo,tiro,handleTiro}) {
         handleTiro(sqNo);
     }
   return (
-    <div
+    <div className="w-[33%] h-[100px] flex items-center justify-center border flex-nowrap p-10 text-9xl  border-black cursor-pointer"
     onClick={
         ()=>handleClick()
     }
-    className='border border-black p-10 text-9xl '
     >{char=='-'?' ':char}</div>
   )
 }

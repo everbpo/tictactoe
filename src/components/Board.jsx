@@ -17,7 +17,7 @@ function Board({ tiro, handleTiro, boardSize, winner }) {
             className=' p-10 rounded-xl max-w-4xl mx-auto w-full bg-slate-200'
         >
             <h1 className='text-center text-7xl font-bold'>{winner == null ?  `Tiro:${tiro}`:`Ganador:${winner}`} </h1>
-            <div className={`bg-orange-500 grid  grid-cols-${boardSize} grid-rows-${boardSize}`}>
+            <div className={`bg-orange-500 flex flex-row flex-wrap items-center justify-center`}>
                 {
                     squares.map((i) => <Square key={i} sqNo={i} tiro={tiro} handleTiro={handleTiro} />)
                 }
