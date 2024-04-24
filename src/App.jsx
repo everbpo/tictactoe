@@ -14,7 +14,7 @@ function App() {
   const winners = [
     [1, 2, 3], [4, 5, 6], [7, 8, 9],
     [1, 5, 9], [7, 5, 3], [7, 4, 1], [8, 5, 2], [9, 6, 3]]
-  const calculatingWinner = (tiros,winner) => {
+  const calculatingWinner = (tiros, winner) => {
 
     let centinela = 0;
     for (let i = 0; i < winners.length; i++) {
@@ -33,19 +33,22 @@ function App() {
     return false;
   }
   const handleTiro = (sqNo) => {
-    if (tiro === PLAYERS.X) {
-      const tiros = [...tiroX];
-      tiros.push(sqNo)
-      setTiroX([...tiros]);
-      setTiro(PLAYERS.O);
-      calculatingWinner(tiros,'X');
-    } else {
-      const tiros = [...tiroO];
-      tiros.push(sqNo)
-      setTiroO([...tiros]);
-      setTiro(PLAYERS.X);
-      calculatingWinner(tiros,'O');
-    }
+    if (winner != '-')
+      if (tiro === PLAYERS.X) {
+        const tiros = [...tiroX];
+        tiros.push(sqNo)
+        setTiroX([...tiros]);
+        setTiro(PLAYERS.O);
+        calculatingWinner(tiros, 'X');
+      } else {
+        const tiros = [...tiroO];
+        tiros.push(sqNo)
+        setTiroO([...tiros]);
+        setTiro(PLAYERS.X);
+        calculatingWinner(tiros, 'O');
+      }
+    else
+      return;
   }
   return (
     <>
