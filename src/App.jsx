@@ -13,37 +13,24 @@ function App() {
   const [tiro, setTiro] = useState('O');
   const winners = [
     [1, 2, 3], [4, 5, 6], [7, 8, 9],
-    [1, 5, 9], [7, 5, 3],[7,4,1],[8,5,2],[9,6,3]  ]
-  const calculatingWinner = () => {
-    console.log(tiroX);
-    console.log(tiroO)
+    [1, 5, 9], [7, 5, 3], [7, 4, 1], [8, 5, 2], [9, 6, 3]]
+  const calculatingWinner = (tiros) => {
+
     let centinela = 0;
     for (let i = 0; i < winners.length; i++) {
-      console.log(winners[i]);
-      for (let j = 0; j < tiroO.length; j++) {
-        if (!winners[i].includes(tiroO[j])) {
+      for (let j = 0; j < tiros.length; j++) {
+        if (!winners[i].includes(tiros[j])) {
           centinela = 0;
           break; // Exit the loop if the current winner combination does not contain the current 'O' move
         }
         ++centinela;
         if (centinela == BOARD_SIZE) {
           setWinner('O');
-          return; // Exit the function once a winner is found
-        }
-      }
-      centinela = 0; // Reset the counter for the next iteration
-      for (let j = 0; j < tiroX.length; j++) {
-        if (!winners[i].includes(tiroX[j])) {
-          centinela = 0;
-          break; // Exit the loop if the current winner combination does not contain the current 'X' move
-        }
-        ++centinela;
-        if (centinela == BOARD_SIZE) {
-          setWinner('X');
-          return; // Exit the function once a winner is found
+          return true; // Exit the function once a winner is found
         }
       }
     }
+    return false;
   }
   const handleTiro = (sqNo) => {
     if (tiro === PLAYERS.X) {
@@ -51,13 +38,14 @@ function App() {
       tiros.push(sqNo)
       setTiroX([...tiros]);
       setTiro(PLAYERS.O);
+      calculatingWinner(tiros);
     } else {
       setTiro(PLAYERS.X);
       const tiros = [...tiroO];
       tiros.push(sqNo)
       setTiroO([...tiros]);
+      calculatingWinner(tiros);
     }
-    calculatingWinner();
   }
   return (
     <>
