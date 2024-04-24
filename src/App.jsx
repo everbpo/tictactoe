@@ -14,7 +14,7 @@ function App() {
   const winners = [
     [1, 2, 3], [4, 5, 6], [7, 8, 9],
     [1, 5, 9], [7, 5, 3], [7, 4, 1], [8, 5, 2], [9, 6, 3]]
-  const calculatingWinner = (tiros) => {
+  const calculatingWinner = (tiros,winner) => {
 
     let centinela = 0;
     for (let i = 0; i < winners.length; i++) {
@@ -25,7 +25,7 @@ function App() {
         }
         ++centinela;
         if (centinela == BOARD_SIZE) {
-          setWinner('O');
+          setWinner(winner);
           return true; // Exit the function once a winner is found
         }
       }
@@ -38,13 +38,13 @@ function App() {
       tiros.push(sqNo)
       setTiroX([...tiros]);
       setTiro(PLAYERS.O);
-      calculatingWinner(tiros);
+      calculatingWinner(tiros,'X');
     } else {
-      setTiro(PLAYERS.X);
       const tiros = [...tiroO];
       tiros.push(sqNo)
       setTiroO([...tiros]);
-      calculatingWinner(tiros);
+      setTiro(PLAYERS.X);
+      calculatingWinner(tiros,'O');
     }
   }
   return (
