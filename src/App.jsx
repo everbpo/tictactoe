@@ -33,7 +33,7 @@ function App() {
     return false;
   }
   const handleTiro = (sqNo) => {
-    if (winner != '-')
+    if (winner ==null)
       if (tiro === PLAYERS.X) {
         const tiros = [...tiroX];
         tiros.push(sqNo)
